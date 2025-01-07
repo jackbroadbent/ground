@@ -1,7 +1,43 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full-Screen Image</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .full-screen-image {
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Array of images in the folder
+            const images = [
+                "ground/images/cristian-palmer-XexawgzYOBc-unsplash.jpg"
+                "ground/images/marek-piwnicki-zCDGyBy40mc-unsplash.jpg",
+                "ground/images/pascal-debrunner-HUNxOM4VN0k-unsplash.jpg"
+            ];
+
+            // Select a random image
+            const randomImage = images[Math.floor(Math.random() * images.length)];
+
+            // Set the background image
+            document.querySelector(".full-screen-image").style.backgroundImage = `url(${randomImage})`;
+        });
+    </script>
+</head>
 <body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
+    <div class="full-screen-image"></div>
 </body>
 </html>
