@@ -3,49 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Full-Screen Image</title>
+    <title>Full-Screen Image with Text</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body, html {
             margin: 0;
             padding: 0;
             height: 100%;
             overflow: hidden;
+            font-family: 'Quicksand', sans-serif;
         }
 
         .full-screen-image {
             width: 100%;
             height: 100%;
-            background-color: #000; /* Fallback color */
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .centered-text {
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 2rem; /* Fairly large */
+            font-weight: 700; /* Bold */
+            max-width: 80%;
         }
     </style>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            // Array of images in the folder
+            // Array of images in the 'images' folder
             const images = [
-                "images/cristian-palmer-XexawgzYOBc-unsplash.jpg",
-                "images/marek-piwnicki-zCDGyBy40mc-unsplash.jpg",
-                "images/pascal-debrunner-HUNxOM4VN0k-unsplash.jpg"
+                "images/image1.jpg",
+                "images/image2.jpg",
+                "images/image3.jpg"
             ];
-
-            console.log("Image list:", images); // Debug: log the list of images
 
             // Select a random image
             const randomImage = images[Math.floor(Math.random() * images.length)];
-            console.log("Selected image:", randomImage); // Debug: log the selected image
 
             // Set the background image
-            const imageContainer = document.querySelector(".full-screen-image");
-            imageContainer.style.backgroundImage = `url(${randomImage})`;
-
-            // Debug: verify that the image URL is applied
-            console.log("Background image set to:", imageContainer.style.backgroundImage);
+            document.querySelector(".full-screen-image").style.backgroundImage = `url(${randomImage})`;
         });
     </script>
 </head>
 <body>
-    <div class="full-screen-image"></div>
+    <div class="full-screen-image">
+        <div class="centered-text">
+            Find peace in every moment.
+        </div>
+    </div>
 </body>
 </html>
