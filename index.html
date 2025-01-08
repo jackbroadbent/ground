@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Full-Screen Image with Text</title>
-       <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body, html {
             margin: 0;
@@ -37,26 +37,31 @@
         }
     </style>
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            // Array of images in the 'images' folder
-            const images = [
-                "iimages/cristian-palmer-XexawgzYOBc-unsplash.jpg",
-                "images/marek-piwnicki-zCDGyBy40mc-unsplash.jpg",
-                "images/pascal-debrunner-HUNxOM4VN0k-unsplash.jpg"
-            ];
+        document.addEventListener("DOMContentLoaded", async () => {
+            try {
+                // Fetch the list of images from the serverless function
+                const response = await fetch('/.netlify/functions/listImages');
+                const images = await response.json();
 
-            // Select a random image
-            const randomImage = images[Math.floor(Math.random() * images.length)];
+                // Randomly select an image
+                const randomImage = images[Math.floor(Math.random() * images.length)];
 
-            // Set the background image
-            document.querySelector(".full-screen-image").style.backgroundImage = `url(${randomImage})`;
+                // Set the background image
+                document.querySelector(".full-screen-image").style.backgroundImage = `url(/images/${randomImage})`;
+            } catch (error) {
+                console.error('Error fetching images:', error);
+
+                // Fallback if the serverless function fails
+                document.querySelector(".full-screen-image").style.backgroundColor = "#000";
+                document.querySelector(".centered-text").textContent = "Error loading images. Please try again later.";
+            }
         });
     </script>
 </head>
 <body>
     <div class="full-screen-image">
         <div class="centered-text">
-            Find peace in every moment.
+            Loading inspirational content...
         </div>
     </div>
 </body>
