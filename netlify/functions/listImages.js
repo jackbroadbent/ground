@@ -4,7 +4,7 @@ const path = require('path');
 exports.handler = async () => {
     try {
         // Path to the images folder
-        const imagesFolder = path.join(__dirname, '../../images');
+        const imagesFolder = path.join(process.cwd(), 'images');
         const files = fs.readdirSync(imagesFolder);
 
         // Filter only image files
